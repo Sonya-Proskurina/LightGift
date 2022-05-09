@@ -26,7 +26,7 @@ public class CategoryService {
     public Category getCategory(Long id) throws NotFoundException {
         CategoryEntity category = categoryRepository.findById(id).orElse(null);
         if (category==null) {
-            throw new NotFoundException("Продукт не найден");
+            throw new NotFoundException("Категория не найдена");
         }
         return Category.toModel(category);
     }

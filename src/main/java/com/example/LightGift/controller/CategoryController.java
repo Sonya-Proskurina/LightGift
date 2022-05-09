@@ -1,6 +1,7 @@
 package com.example.LightGift.controller;
 
 import com.example.LightGift.entity.CategoryEntity;
+import com.example.LightGift.exception.CategoryAlreadyExistException;
 import com.example.LightGift.exception.NotFoundException;
 import com.example.LightGift.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,10 @@ public class CategoryController {
         try {
             categoryService.createCategory(category);
             return ResponseEntity.ok("Категория успешно создана");
-        }  catch (Exception e) {
+        }  catch (CategoryAlreadyExistException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
     }

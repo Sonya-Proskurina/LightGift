@@ -34,7 +34,7 @@ public class ProductController {
     public ResponseEntity createProduct(@RequestBody ProductEntity product,@RequestParam Long id) {
         try {
             productService.createProduct(product, id);
-            return ResponseEntity.ok("Продукт успешно создан "+product.toString());
+            return ResponseEntity.ok("Продукт успешно создан ");
         }  catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
